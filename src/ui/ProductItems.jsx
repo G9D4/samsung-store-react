@@ -14,7 +14,6 @@ const StyleProductItems = styled.div`
 `
 const StyleProductItem = styled.article`
     display: flex;
-    flwidth: 18rem;
     max-width: 95%;
     border: 1px solid #e4e4e4;
     box-shadow: none;

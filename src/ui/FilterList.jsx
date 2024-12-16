@@ -2,6 +2,7 @@
 import styled from "styled-components";
 
 const filters=[
+    {id:0,label:'Todos'},
     {id:1,label:'Mobile'},
     {id:2,label:'TV & Audio'},
     {id:3,label:'Electrodomesticos'},
