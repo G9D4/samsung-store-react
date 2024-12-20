@@ -1,13 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-
-const filters=[
-    {id:0,label:'Todos'},
-    {id:1,label:'Mobile'},
-    {id:2,label:'TV & Audio'},
-    {id:3,label:'Electrodomesticos'},
-    {id:4,label:'Tecnología AI'}
-]
+import { useSearchParams } from "react-router-dom";
+import { filters } from "../utils/constants";
 
 const StyleFilterList = styled.ul`
     list-style: none;
@@ -44,15 +38,21 @@ const StyleFilterListButton = styled.button`
 
 function FilterListItem(props){
     return <StyleFilterListItem>
-        <StyleFilterListButton onClick={()=>props.onClickFilter(props.id)} >{ props.children }</StyleFilterListButton>
+        <StyleFilterListButton onClick={()=>props.onClickFilter(props.value)} >{ props.children }</StyleFilterListButton>
     </StyleFilterListItem>
 }
 
-function FilterList({onClickFilter}){
+function FilterList(){
+    const [searchParams,setSearchParams]=useSearchParams();
+    function handleClick(value){
+        searchParams.set("filterBy",value);
+        setSearchParams(searchParams);
+    }
+
     return(
         <StyleFilterList>
             {filters.map(filter=>
-                <FilterListItem key={filter.id} id={filter.id} onClickFilter={onClickFilter}>{filter.label}</FilterListItem>
+                <FilterListItem key={filter.id} value={filter.value} onClickFilter={handleClick}>{filter.label}</FilterListItem>
             )}
         </StyleFilterList>
     )
