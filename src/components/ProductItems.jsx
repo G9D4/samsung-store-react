@@ -70,7 +70,7 @@ function ProductItem(props){
 function ProductItems({items}){
     return(
         <StyleProductItems>
-            {items.map(item=><ProductItem key={item.id} title={item.title} price={item.price} src={item.src} /> )}
+            {items.map(item=><ProductItem key={item.id} title={item.title} price={item.price} src={item.imageUrls[0]} /> )}
         </StyleProductItems>
     )
 }
