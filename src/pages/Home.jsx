@@ -1,8 +1,8 @@
 
 import styled from "styled-components";
-import Carousel from "../components/Carousel";
-import ProductItems from "../components/ProductItems";
-import FilterList from "../components/FilterList";
+import Carousel from "../components/common/home/Carousel";
+import ProductItems from "../components/common/home/ProductItems";
+import FilterList from "../components/common/home/FilterList";
 import { products } from "../utils/constants";
 import { useSearchParams } from "react-router-dom"
 

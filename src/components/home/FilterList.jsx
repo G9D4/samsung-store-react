@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { useSearchParams } from "react-router-dom";
-import { filters } from "../utils/constants";
+import { filters } from "../../../utils/constants";
 
 const StyleFilterList = styled.ul`
     list-style: none;

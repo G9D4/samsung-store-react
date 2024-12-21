@@ -2,7 +2,7 @@
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ShoppingCart from "./pages/ShoppingCart";
-import AppLayout from "./components/AppLayout";
+import AppLayout from "./components/common/AppLayout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
 import Register from "./pages/Register";
