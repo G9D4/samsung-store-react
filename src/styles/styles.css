@@ -409,9 +409,9 @@ footer a:hover {
     text-decoration: none;
     color: black;
     border-radius: 24px;
-    border-color: none;
     background: none;
     border-color: transparent;
+    font-size: 16px;
 }
 
 .filter-list_item-button:hover {
@@ -847,6 +847,20 @@ footer a:hover {
         width: 100%;
         display: flex;
         align-self: center;
+    }
+
+    /* HOME MOBILE */
+
+    .filter-list_item-button {
+        padding: 4px 12px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+        border-radius: 24px;
+        background: none;
+        border-color: transparent;
+        font-size: 14px;
     }
 
     /* FOOTER MOBILE */
