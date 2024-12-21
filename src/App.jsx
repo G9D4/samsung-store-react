@@ -4,7 +4,6 @@ import Login from "./pages/Login";
 import ShoppingCart from "./pages/ShoppingCart";
 import AppLayout from "./components/common/AppLayout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import GlobalStyles from "./styles/GlobalStyles";
 import Register from "./pages/Register";
 import Checkout from "./pages/Checkout";
 import { Toaster } from "react-hot-toast";
@@ -14,9 +13,7 @@ function App() {
 
   return (
     <>
-      <GlobalStyles />
-      <BrowserRouter>
-        <Routes>
+      <BrowserRouter> <Routes>
           <Route path="/"  element={ <AppLayout /> }>
             <Route index  element={<Home />} />
             <Route path="login"  element={<Login />} />
