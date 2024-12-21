@@ -5,6 +5,8 @@ import { products } from "../utils/constants";
 import { useSearchParams } from "react-router-dom"
 import '../styles/styles.css';
 
+
+
 function Home() {
   // FILTERING
   const [searchParams] = useSearchParams();
