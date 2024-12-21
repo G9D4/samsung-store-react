@@ -423,7 +423,6 @@ footer a:hover {
     display: flex;
     flex-direction: column;
     gap: 32px;
-    padding: 32px 0;
 }
 
 
@@ -508,6 +507,9 @@ footer a:hover {
 
 .carousel {
     overflow: hidden;
+    width: 70%;
+    display: flex;
+    align-self: center;
 }
 
 @keyframes slideh1 {
@@ -752,6 +754,15 @@ footer a:hover {
         max-width: 700px;
     }
 
+    /* CARRUSEL HOME */
+
+    .carousel {
+        overflow: hidden;
+        width: 100%;
+        display: flex;
+        align-self: center;
+    }
+
     /* CARRITO TABLET
 
     .content-wrapper {
@@ -827,6 +838,15 @@ footer a:hover {
     
     .main-header__item-icon i {
         font-size: 16px ! important;
+    }
+
+    /* CARRUSEL HOME */
+
+    .carousel {
+        overflow: hidden;
+        width: 100%;
+        display: flex;
+        align-self: center;
     }
 
     /* FOOTER MOBILE */
