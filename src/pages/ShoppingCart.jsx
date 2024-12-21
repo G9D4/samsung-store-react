@@ -1,5 +1,21 @@
+/* eslint-disable react/prop-types */
 import '../styles/styles.css';
+import { usuarios } from '../utils/variables';
+import { products } from '../utils/constants';
 
+function RowShoppingCart(props){
+  return (
+    <tr>
+      <td>
+        <img  src={props.src} />
+      </td>
+      <td>{props.description}</td>
+      <td>US$ {props.price}</td>
+      <td>{props.quantity}</td>
+      <td>US$ 0.00</td>
+    </tr>
+  )
+}
 
 function ShoppingCart() {
     return (
@@ -16,13 +32,11 @@ function ShoppingCart() {
                   <th>Subtotal</th>
                   <th></th>
               </tr>
-              <tr>
-                  <td>
-                    <img  src="https://shop.samsung.com/latin/pub/media/catalog/product/cache/6cd1311462f4ff327d90cc1375d833bb/s/m/sm-s721_galaxys24fe_gray_front_thumb.png" />
-                  </td>
-                  <td>Color: Gray</td>
-
-              </tr>
+              {usuarios[0].productos.map(producto=>{
+                const _product=products.find(x=>x.id==producto.id);
+               return <RowShoppingCart key={_product.id} src={_product.imageUrls[0]} description={_product.description} price={_product.price} quantity={producto.quantity} />
+                })}
+              
             </table>
           </section>
         </div>

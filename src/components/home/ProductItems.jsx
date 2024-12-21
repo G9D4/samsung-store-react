@@ -20,7 +20,6 @@ function ProductItem(props){
 }
 
 function addProductoToUser(user,producto_id,quantity=1){
-    console.log(user.productos)
     const _products=user.productos;
     const _product_found=_products.find(x=>x.id==producto_id)
     if(_product_found){
@@ -29,13 +28,13 @@ function addProductoToUser(user,producto_id,quantity=1){
     else{
         _products.push({id:producto_id,quantity:quantity})
     }
+    return true
 }
 
 function ProductItems({items}){
     function handleClick(id){
-        toast.success("Producto agregado al carrito"); 
-        //agregar al carrito
-        addProductoToUser(usuarios[0],id)
+        if(addProductoToUser(usuarios[0],id))
+            toast.success("Producto agregado al carrito"); 
     }
     return(
         <section className="product-items">
