@@ -1,16 +1,10 @@
-
-import styled from "styled-components";
-import Carousel from "../components/common/home/Carousel";
-import ProductItems from "../components/common/home/ProductItems";
-import FilterList from "../components/common/home/FilterList";
+import Carousel from "../components/home/Carousel";
+import ProductItems from "../components/home/ProductItems";
+import FilterList from "../components/home/FilterList";
 import { products } from "../utils/constants";
 import { useSearchParams } from "react-router-dom"
+import '../styles/styles.css';
 
-const StyleMain = styled.main`
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-`
 function Home() {
   // FILTERING
   const [searchParams] = useSearchParams();
@@ -19,11 +13,11 @@ function Home() {
   if (filterBy === "all") filteredProducts = products;
   else filteredProducts = products.filter((product) => product.type == filterBy);
   return (
-    <StyleMain>
+    <main className="lista-productos-main">
       <Carousel />
       <FilterList />
       <ProductItems items={filteredProducts} />
-    </StyleMain>
+    </main>
   )
 }
 

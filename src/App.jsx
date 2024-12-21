@@ -9,7 +9,6 @@ import Register from "./pages/Register";
 import Checkout from "./pages/Checkout";
 
 
-
 function App() {
 
   return (
