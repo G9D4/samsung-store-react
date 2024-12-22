@@ -1,4 +1,3 @@
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLinkedin } from '@fortawesome/fontawesome-free-brands'
 import { faYoutube } from "@fortawesome/fontawesome-free-brands";
@@ -6,36 +5,6 @@ import { faTimes } from "@fortawesome/fontawesome-free-solid";
 import { faFacebook } from "@fortawesome/fontawesome-free-brands";
 import { faInstagram } from "@fortawesome/fontawesome-free-brands";
 import '../../styles/styles.css';
-
-
-// const StyleFooter = styled.div`
-//     border-top: 1px solid #757575;
-//     width: 100%;
-//     a {
-//         color: #000000;
-//         text-decoration: none;
-//     }
-//     a:hover {
-//         color: #006BB4;
-//         text-decoration: underline;
-//     }
-// `
-// const StyleFooterLinks = styled.div`
-//     display: flex;
-//     gap: 60px;
-//     justify-content: center;
-//     padding: 40px 0;
-// `
-// const StyleFooterLinksColumns = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     gap: 8px; 
-// `
-
-// const StyleFooterLinksRedes = styled.span`
-//     display: flex;
-//     gap: 16px;
-// `
 
 function Footer() {
     return (
