@@ -1,56 +1,6 @@
 import { useState } from "react";
-import styled from "styled-components";
+import '../styles/styles.css';
 
-const StyleRegister = styled.div`
-    max-width: 530px;
-    margin: auto;
-    padding: 20px;
-`
-const StyleRegisterContainer = styled.div`
-    display: grid;
-    gap: 10px;
-    h1{
-        font-size: 24px;
-        color: #222488;
-        margin: 0;
-    }
-    fieldset{
-        display: grid;
-        gap: 10px;
-        border: none;
-        padding: 0;
-        }
-    .asterisk {
-        color: red;
-        font-size: small;
-    }
-    input {
-        width: 100%;
-        height: 32px;
-        padding: 0 9px;
-        font-size: 14px;
-        border: 1px solid #c2c2c2;
-        border-radius: 1px;
-        box-sizing: border-box;
-    }
-`
-const StyleRegisterButton = styled.button`
-    background-color: #2089FF;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    border-radius: 24px;
-    border: none;
-    padding: 10px 20px;
-    letter-spacing: 2.4px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: bold;
-    
-    &:hover{
-        background-color: #0056b3;
-    }
-
-`
 function Register() {
     const [inputs, setInputs] = useState({});
 
@@ -65,33 +15,60 @@ function Register() {
     }
 
     return (
-      <StyleRegister>
-        <StyleRegisterContainer>
-            <h1>Registro</h1> 
+        <main className="registro">
+        <section className="container">
+            <h1 id="page-title">Registro de cliente</h1>
             <article>
-                <p>Si tienes una cuenta, inicia sesión con tu dirección de correo electrónico.</p>
+                <h2>Información personal</h2>
                 <form onSubmit={handleSubmit}>
-                    <fieldset>
-                        <label >
+                    <fieldset className="datos">
+                        <label htmlFor="nombres">
+                            Nombres
+                            <span className="asterisk">*</span>
+                        </label>
+                        <input className="inputText" type="text" name="nombres" id="nombres" value={inputs.nombres || ""} onChange={handleChange} required />
+                        
+                        <label htmlFor="apellidos">
+                            Apellidos
+                            <span className="asterisk">*</span>
+                        </label>
+                        <input className="inputText" type="text" name="apellidos" id="apellidos" value={inputs.apellidos || ""} onChange={handleChange} required />
+                        
+                        <label htmlFor="telefono">
+                            Teléfono
+                            <span className="asterisk">*</span>
+                        </label>
+                        <input className="inputText" type="tel" name="telefono" id="telefono" value={inputs.telefono || ""} onChange={handleChange} required />
+                        <br />
+
+                        <h2>Información de inicio de sesión</h2>
+                        <label htmlFor="correo">
                             Correo electrónico
                             <span className="asterisk">*</span>
                         </label>
-                        <input name="email" value={inputs.email || ""}  onChange={handleChange} />
-                        <label >
-                            Contraseña  
+                        <input className="inputText" type="email" name="correo" id="correo" value={inputs.correo || ""} onChange={handleChange} required />
+                        
+                        <label htmlFor="password">
+                            Contraseña
                             <span className="asterisk">*</span>
                         </label>
-                        <input name="password" value={inputs.password || ""}  onChange={handleChange} />
+                        <input className="inputText" type="password" name="password" id="password" value={inputs.password || ""} onChange={handleChange} required autoComplete="new-password" />
+
+                        <label htmlFor="password_confirm">
+                            Confirmar contraseña
+                            <span className="asterisk">*</span>
+                        </label>
+                        <input className="inputText" type="password" name="password_confirm" id="password_confirm" value={inputs.passwordConfirm || ""} onChange={handleChange} required autoComplete="new-password" />
+                        <br />
                     </fieldset>
+                    <button className="primary-btn btn-responsive" type="submit">Crear Cuenta</button>
                     <br />
-                    <StyleRegisterButton type="submit" >
-                        <span>Iniciar sesion</span>
-                    </StyleRegisterButton>
+                    <span className="asterisk">*Campos obligatorios</span>
                 </form>
             </article>
-        </StyleRegisterContainer>
-      </StyleRegister>
+        </section>
+    </main>
     )
   }
   
-  export default Register
+  export default Register;
