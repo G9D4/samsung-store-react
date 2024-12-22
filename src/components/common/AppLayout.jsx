@@ -8,11 +8,11 @@ import '../../styles/styles.css';
 
 function AppLayout(){
     return(
-        <body>
+        <div>
             <Header />
             <Outlet />
             <Footer />
-        </body>
+        </div>
     )
 }
 

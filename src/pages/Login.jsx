@@ -53,13 +53,11 @@ function Login() {
                     <h2>Nuevos clientes</h2>
                     <p>Crear una cuenta tiene muchos beneficios: Pago más rápido, guardar más de una dirección,
                         seguimiento de pedidos y mucho más.</p>
-                    <a href="../registro/registro.html">
-                        <Link className="main-header__item-icon" to="/register">
-                            <button className="primary-btn btn-responsive" >
-                                <span>Crear una cuenta</span>
-                            </button>
-                        </Link>
-                    </a>
+                    <Link className="main-header__item-icon" to="/register">
+                        <button className="primary-btn btn-responsive" >
+                            <span>Crear una cuenta</span>
+                        </button>
+                    </Link>
                 </article>
             </section>
         </main>
