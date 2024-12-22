@@ -3,6 +3,7 @@
 import '../../styles/styles.css';
 import toast from "react-hot-toast";
 import { usuarios } from '../../utils/variables';
+import { useCart } from '../../context/CartContext';
 
 function ProductItem(props){
     return(
@@ -19,21 +20,12 @@ function ProductItem(props){
     )
 }
 
-function addProductoToUser(user,producto_id,quantity=1){
-    const _products=user.productos;
-    const _product_found=_products.find(x=>x.id==producto_id)
-    if(_product_found){
-        _product_found.quantity++
-    }
-    else{
-        _products.push({id:producto_id,quantity:quantity})
-    }
-    return true
-}
-
 function ProductItems({items}){
+
+    const { addProduct } = useCart();
+
     function handleClick(id){
-        if(addProductoToUser(usuarios[0],id))
+        if(addProduct(usuarios[0],id))
             toast.success("Producto agregado al carrito"); 
     }
     return(
