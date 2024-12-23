@@ -1,11 +1,13 @@
-import { createContext, useContext, useState } from 'react';
+/* eslint-disable react/prop-types */
+
+import { createContext, useContext } from 'react';
 import { products } from '../utils/constants';
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
 
-    let storageCart = JSON.parse(localStorage.getItem("cart")) || [];
+    let storageCart = JSON.parse(localStorage.getItem("cart")) || []; 
 
     const addProduct = (user, productId) => {
 
@@ -46,8 +48,8 @@ export function CartProvider({ children }) {
         let total = 0;
 
         storageCart.forEach((item) => {
-            const product = products.find(p => p.id === item.id);
-            const subtotal = product.precio * item.quantity;
+            const product = products.find(p => p.id == item.id);
+            const subtotal = product.price * item.quantity;
             total += subtotal;
         })
 
@@ -57,6 +59,7 @@ export function CartProvider({ children }) {
     return (
         <CartContext.Provider
             value={{
+                storageCart,
                 addProduct,
                 removeFromCart,
                 updateQuantity,

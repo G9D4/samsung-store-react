@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/fontawesome-free-solid';
+import { useCart } from "../context/CartContext";
+import CartItems from "../components/checkout/CartItems";
 import '../styles/styles.css';
 
+
+
+
 function Checkout() {
+
+  const { getTotal } = useCart();
+  
   return (
     <main className="checkout">
       <form className="checkout-form" id="checkout-form">
@@ -80,11 +88,11 @@ function Checkout() {
       </form>
       <div className="checkout-detail background-color-gray">
         <aside>
-          <section id="cart-items-section"></section>
+          <CartItems />
           <section>
             <div className="checkout-subprice">
               <p>Subtotal</p>
-              <p id="cart-subtotal"></p>
+              <p id="cart-subtotal">S/. {getTotal()}</p>
             </div>
             <div className="checkout-subprice">
               <p>Envío</p>
@@ -94,7 +102,7 @@ function Checkout() {
           <section>
             <div className="checkout-price">
               <strong>Total</strong>
-              <strong id="cart-total"></strong>
+              <strong id="cart-total">S/. {(getTotal() + 13).toFixed(2)}</strong>
             </div>
           </section>
         </aside>
