@@ -88,16 +88,11 @@ export function CheckoutProvider({ children }) {
     const checkExpDate = (value) => {
 
         if (value.length === 5) {
-            console.log(value)
-            console.log(value.length)
             const cardMonth = value.substr(0, 2).substr(0, 1) == 0 ? Number(value.substr(1, 1)) : Number(value.substr(0, 2));
             const cardYear = Number(20 + value.substr(3));
 
             let currentMonth = new Date().getMonth();
             let currentYear = new Date().getFullYear();
-
-            console.log(cardMonth)
-            console.log(currentMonth)
 
             if (cardYear < currentYear || (cardYear === currentYear && cardMonth < currentMonth) || cardMonth > 12) {
                 return "Fecha inválida";

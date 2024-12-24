@@ -19,7 +19,6 @@ export function CartProvider({ children }) {
             storageCart.push({ "id": productId, "quantity": 1 })
         }
         localStorage.setItem("cart", JSON.stringify(storageCart));
-        console.log('carrito nuevo', JSON.parse(localStorage.getItem("cart")))
         return true;
     }
 
