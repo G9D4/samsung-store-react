@@ -4,6 +4,7 @@ import { faArrowLeft } from '@fortawesome/fontawesome-free-solid';
 import { useCart } from "../context/CartContext";
 import CartItems from "../components/checkout/CartItems";
 import '../styles/styles.css';
+import { useCheckout } from "../context/CheckoutContext";
 
 
 
@@ -11,10 +12,11 @@ import '../styles/styles.css';
 function Checkout() {
 
   const { getTotal } = useCart();
-  
+  const { wheelHandler, formatDni, formatTelefono, formatNumeroTarjeta, formatExpirationDate, formatCvc, submitHandler } = useCheckout();
+
   return (
     <main className="checkout">
-      <form className="checkout-form" id="checkout-form">
+      <form className="checkout-form" id="checkout-form" onSubmit={submitHandler}>
         <Link to="/shoppingCart">
           <FontAwesomeIcon icon={faArrowLeft} />
           Regresar al Carrito
@@ -50,7 +52,7 @@ function Checkout() {
           </div>
           <div className="checkout-form_field">
             <label htmlFor="dni">DNI</label>
-            <input type="number" name="dni" id="dni" required />
+            <input type="number" name="dni" id="dni" required onKeyDown={formatDni} onWheel={wheelHandler} />
           </div>
           <div className="checkout-form_field">
             <label htmlFor="direccion">Dirección</label>
@@ -58,7 +60,7 @@ function Checkout() {
           </div>
           <div className="checkout-form_field">
             <label htmlFor="telefono">Teléfono</label>
-            <input type="tel" name="telefono" id="telefono" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required />
+            <input type="tel" name="telefono" id="telefono" required onKeyDown={formatTelefono} />
           </div>
 
         </fieldset>
@@ -66,7 +68,7 @@ function Checkout() {
           <h2 className="checkout-form_title text-color-dark">Pago</h2>
           <div className="checkout-form_field">
             <label htmlFor="numeroTarjeta">Número de la tarjeta</label>
-            <input type="number" id="numeroTarjeta" required />
+            <input type="number" id="numeroTarjeta" required onKeyDown={formatNumeroTarjeta} onWheel={wheelHandler} />
           </div>
           <div className="checkout-form_field">
             <label htmlFor="nombreTitular">Nombre del titular</label>
@@ -75,11 +77,11 @@ function Checkout() {
           <div className="checkout-form_double-field">
             <div className="checkout-form_half-field">
               <label htmlFor="fechaExpiracion">Fecha de expiración</label>
-              <input type="text" maxLength="5" id="fechaExpiracion" required />
+              <input type="text" maxLength="5" id="fechaExpiracion" required onKeyDown={formatExpirationDate} />
             </div>
             <div className="checkout-form_half-field">
               <label htmlFor="cvc">CVC</label>
-              <input type="number" id="cvc" maxLength="4" required />
+              <input type="number" id="cvc" maxLength="4" required onKeyDown={formatCvc} onWheel={wheelHandler} />
             </div>
           </div>
 
