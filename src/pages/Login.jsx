@@ -1,13 +1,21 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { usuarios } from '../utils/variables';
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../context/AuthContext';
 import '../styles/styles.css';
 
 function Login() {
     const [inputs, setInputs] = useState({});
     const [errors, setErrors] = useState({});
+    const { user, login } = useAuth();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+          navigate('/');
+        }
+    }, [user, navigate]);
 
     const validateEmail = (email) => {
         if (!email) {
@@ -51,7 +59,7 @@ function Login() {
             setErrors({ email: "El usuario no existe", password: passwordError });
         } else {
             if (usuarioEncontrado.contrasenia === inputs.password) {
-                navigate('/');
+                login(inputs.email, inputs.password);
             } else {
                 setErrors({ email: emailError, password: "La contraseña no coincide con el usuario" });
             }
