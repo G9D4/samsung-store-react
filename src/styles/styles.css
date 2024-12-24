@@ -643,6 +643,18 @@ footer a:hover {
     display: none;
 }
 
+/*Estilo para la paginda de carrito*/
+.img-reducido {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.descripcion-producto {
+    word-wrap: break-word;
+    max-width: 150px;
+}
+
 /* CHECKOUT */
 
 .checkout {
@@ -996,4 +1008,6 @@ footer a:hover {
     .checkout-detail aside {
         width: auto;
     }
+
+
 }
