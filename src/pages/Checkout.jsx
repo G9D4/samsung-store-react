@@ -94,7 +94,11 @@ function Checkout() {
           <section>
             <div className="checkout-subprice">
               <p>Subtotal</p>
-              <p id="cart-subtotal">S/. {getTotal()}</p>
+              <p id="cart-subtotal">S/. {getTotal().toFixed(2)}</p>
+            </div>
+            <div className="checkout-subprice">
+              <p>Impuestos</p>
+              <p id="cart-subtotal">S/. {(getTotal()*1.18 - getTotal()).toFixed(2)}</p>
             </div>
             <div className="checkout-subprice">
               <p>Envío</p>
@@ -104,7 +108,7 @@ function Checkout() {
           <section>
             <div className="checkout-price">
               <strong>Total</strong>
-              <strong id="cart-total">S/. {(getTotal() + 13).toFixed(2)}</strong>
+              <strong id="cart-total">S/. {(getTotal() + (getTotal()*1.18 - getTotal()) + 13).toFixed(2)}</strong>
             </div>
           </section>
         </aside>
