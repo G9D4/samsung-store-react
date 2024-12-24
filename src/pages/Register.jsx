@@ -6,7 +6,6 @@ function Register() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('inputs',inputs)
       }
     const handleChange = (event) => {
         const name = event.target.name;
