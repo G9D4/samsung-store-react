@@ -6,7 +6,6 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,15 +16,30 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = (email, password) => {
-    const usuarioEncontrado = usuarios.find(
-      (usuario) =>
-        usuario.email.toLowerCase() === email.toLowerCase() &&
-        usuario.contrasenia === password
+    const dynamicUsuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+    // Unificar estructuras
+    const formattedDynamicUsuarios = dynamicUsuarios.map(usuario => ({
+        ...usuario,
+        productos: usuario.productos || []
+    }));
+
+    // Combinar usuarios estáticos y dinámicos
+    const allUsuarios = [...usuarios, ...formattedDynamicUsuarios];
+
+    // console.log("Usuarios combinados:", allUsuarios);
+
+    const usuarioEncontrado = allUsuarios.find(
+        (usuario) =>
+            usuario.email.toLowerCase() === email.toLowerCase() &&
+            usuario.contrasenia === password
     );
 
     if (usuarioEncontrado) {
-      setUser(usuarioEncontrado); 
-      localStorage.setItem('user', JSON.stringify(usuarioEncontrado));
+        setUser(usuarioEncontrado);
+        localStorage.setItem('user', JSON.stringify(usuarioEncontrado));
+    } else {
+        alert('Usuario o contraseña incorrectos');
     }
   };
 

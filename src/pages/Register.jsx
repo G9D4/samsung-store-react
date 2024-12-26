@@ -77,6 +77,22 @@ function Register() {
             return;
         }
 
+        // Guardar datos en localStorage
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        const nuevoUsuario = {
+            id: `_dynamic_${Date.now()}`, // Generar un ID único para los usuarios dinámicos
+            nombres: inputs.nombres,
+            apellidos: inputs.apellidos,
+            telefono: inputs.telefono,
+            email: inputs.correo,
+            contrasenia: inputs.password,
+            productos: [] 
+        };
+        usuarios.push(nuevoUsuario);
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+          
+        console.log(usuarios);
+
         console.log("Datos registrados:", inputs);
         navigate('/login'); // Redirigir al login
     };
