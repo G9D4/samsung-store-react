@@ -1,14 +1,71 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { usuarios } from '../utils/variables';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from '../context/AuthContext';
 import '../styles/styles.css';
 
 function Login() {
     const [inputs, setInputs] = useState({});
+    const [errors, setErrors] = useState({});
+    const { user, login } = useAuth();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+          navigate('/');
+        }
+    }, [user, navigate]);
+
+    const validateEmail = (email) => {
+        if (!email) {
+            return "Por favor ingrese un email";
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return "Por favor ingrese un email válido";
+        }
+        return "";
+    };
+
+    const validatePassword = (password) => {
+        if (!password) {
+            return "Por favor ingrese una contraseña";
+        }
+        if (password.length < 8) {
+            return "La contraseña debe tener al menos 8 caracteres";
+        }
+        if (!/^[A-Za-z0-9_@./#$&+-@*]*$/.test(password)) {
+            return "La contraseña solo puede contener letras, números y caracteres especiales";
+        }
+        return "";
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('inputs', inputs)
+        const emailError = validateEmail(inputs.email);
+        const passwordError = validatePassword(inputs.password);
+
+        if (emailError) {
+            setErrors({ email: emailError, password: passwordError });
+            return;
+        }
+
+        const usuarioEncontrado = usuarios.find(
+            (usuario) => usuario.email.toLowerCase() === inputs.email.toLowerCase()
+        );
+
+        if (!usuarioEncontrado) {
+            setErrors({ email: "El usuario no existe", password: passwordError });
+        } else {
+            if (usuarioEncontrado.contrasenia === inputs.password) {
+                login(inputs.email, inputs.password);
+            } else {
+                setErrors({ email: emailError, password: "La contraseña no coincide con el usuario" });
+            }
+        }
     }
+
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -28,23 +85,38 @@ function Login() {
                                 Correo electrónico
                                 <span className="asterisk">*</span>
                             </label>
-                            <input className="inputText" type="email" name="email" value={inputs.email || ""}  onChange={handleChange} id="email" required />
+                            <input
+                                className={`inputText ${errors.email ? "invalid" : ""}`}
+                                type="email"
+                                name="email"
+                                value={inputs.email || ""}
+                                onChange={handleChange}
+                                id="email"
+                            />
+                            {errors.email && <p className="error-message">{errors.email}</p>}
 
                             <label htmlFor="password">
                                 Contraseña
                                 <span className="asterisk">*</span>
                             </label>
-                            <input className="inputText" type="password" name="password" value={inputs.password || ""}  onChange={handleChange} id="password" required />
+                            <input
+                                className={`inputText ${errors.password ? "invalid" : ""}`}
+                                type="password"
+                                name="password"
+                                value={inputs.password || ""}
+                                onChange={handleChange}
+                                id="password"
+                            />
+                            {errors.password && <p className="error-message">{errors.password}</p>}
 
-                            <a className="forgot-password text-color-skyblue" href="/usuario/reset-password" >Olvidé mi contraseña</a>
-                            <br />
+                            <a className="forgot-password text-color-skyblue" href="/usuario/reset-password">
+                                Olvidé mi contraseña
+                            </a>
+                            <p><span className="asterisk">*Campos obligatorios</span></p>
                         </fieldset>
                         <button type="submit" className="primary-btn btn-responsive">
-                            <span>Iniciar sesion</span>
+                            <span>Iniciar sesión</span>
                         </button>
-                        <br />
-                        <br />
-                        <span className="asterisk">*Campos obligatorios</span>
                     </form>
                 </article>
             </section>
@@ -53,15 +125,15 @@ function Login() {
                     <h2>Nuevos clientes</h2>
                     <p>Crear una cuenta tiene muchos beneficios: Pago más rápido, guardar más de una dirección,
                         seguimiento de pedidos y mucho más.</p>
-                    <Link className="main-header__item-icon" to="/register">
-                        <button className="primary-btn btn-responsive" >
+                    <Link to="/register">
+                        <button className="primary-btn btn-responsive">
                             <span>Crear una cuenta</span>
                         </button>
                     </Link>
                 </article>
             </section>
         </main>
-    )
+    );
 }
 
-export default Login
+export default Login;
