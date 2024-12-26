@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/fontawesome-free-solid'
 import { faShoppingCart } from '@fortawesome/fontawesome-free-solid'
 import { faSearch } from '@fortawesome/fontawesome-free-solid'
+import { faSignOutAlt } from '@fortawesome/fontawesome-free-solid';
 import { useAuth } from "../../context/AuthContext";
 import '../../styles/styles.css';
 
@@ -48,7 +49,14 @@ function Header(){
                             <FontAwesomeIcon icon={faSearch} />
                         </Link>
                     </li>
-                    {user ? <button onClick={logout}>Cerrar sesión</button> : ''}
+                    { user ? <li className="main-header__item">
+                        <a className="main-header__item-icon" onClick={logout}>
+                            <FontAwesomeIcon icon={faSignOutAlt} />
+                        </a>
+                    </li> 
+                    : 
+                    ''
+                    }
                 </ul>
             </nav>
         </header>
