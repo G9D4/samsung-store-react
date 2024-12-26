@@ -3,11 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/fontawesome-free-solid'
 import { faShoppingCart } from '@fortawesome/fontawesome-free-solid'
 import { faSearch } from '@fortawesome/fontawesome-free-solid'
+import { faSignOutAlt } from '@fortawesome/fontawesome-free-solid';
+import { useAuth } from "../../context/AuthContext";
 import '../../styles/styles.css';
 
 
 
 function Header(){
+
+    const { user, logout } = useAuth();
+
     return(
         <header>
             <div className="main-header__carousel">
@@ -25,11 +30,15 @@ function Header(){
                     </Link>
                 </ul>
                 <ul className="main-header__item-list ">
-                    <li className="main-header__item">
+                    { !user ? <li className="main-header__item">
                         <Link className="main-header__item-icon"  to="/login">
                             <FontAwesomeIcon icon={faUser} />
                         </Link>
                     </li>
+                    : 
+                    ''
+                    }
+                    
                     <li className="main-header__item">
                         <Link className="main-header__item-icon" to="/shoppingCart">
                             <FontAwesomeIcon icon={faShoppingCart} />
@@ -40,6 +49,14 @@ function Header(){
                             <FontAwesomeIcon icon={faSearch} />
                         </Link>
                     </li>
+                    { user ? <li className="main-header__item">
+                        <a className="main-header__item-icon" onClick={logout}>
+                            <FontAwesomeIcon icon={faSignOutAlt} />
+                        </a>
+                    </li> 
+                    : 
+                    ''
+                    }
                 </ul>
             </nav>
         </header>
