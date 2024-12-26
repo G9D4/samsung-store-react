@@ -655,6 +655,26 @@ footer a:hover {
     max-width: 150px;
 }
 
+.empty-cart {
+    text-align: center;
+    padding: 4rem 0;
+  }
+  .empty-cart h2 {
+    margin-bottom: 2rem;
+  }
+
+  .cart-quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .cart-quantity-controls span{
+    min-width: 37px;
+    text-align: center;
+    align-items: center;
+  }
+
 /* CHECKOUT */
 
 .checkout {

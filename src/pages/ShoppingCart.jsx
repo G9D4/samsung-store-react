@@ -1,49 +1,110 @@
 /* eslint-disable react/prop-types */
+import { useState } from 'react';
 import '../styles/styles.css';
-import { usuarios } from '../utils/variables';
 import { products } from '../utils/constants';
-import { useCart } from '../context/CartContext';
+import { useCart} from '../context/CartContext';
+import { Trash2, Plus, Minus } from 'lucide-react';
 
 
-function RowShoppingCart({id, src, description, price, quantity}) {
+function RowShoppingCart({id, src, description, price, quantity, updateQuantity}) {
+  //const [currentQuantity, setCurrentQuantity] = useState(quantity);
+  const subtotal = (quantity * price).toFixed(2);
+  
   return (
     <tr>
       <td>
         <img src={src} alt={description} className="img-reducido"/>
       </td>
       <td className='descripcion-producto'>{description}</td>
-      <td>US$ {price}</td>
+      <td>S/. {price}</td>
       <td>
-        <input defaultValue={quantity} type="number" name= {`cantidad${id}`} id={`cantidad${id}`} />
+        <div className="cart-quantity-controls">
+            <button
+              className="btn"
+              onClick={() => updateQuantity(id, Math.max(0, quantity - 1))}
+            >
+              <Minus size={16} />
+            </button>
+            <span>{quantity}</span>
+            <button
+              className="btn"
+              onClick={() => updateQuantity(id, quantity + 1)}
+            >
+              <Plus size={16} />
+            </button>
+          </div>
+          
+          <button
+            className="btn remove-button"
+            //onClick={() => removeFromCart(id)}
+          >
+            <Trash2 size={16} />
+          </button> 
+        {/* <input 
+          defaultValue={quantity} 
+          type="number" 
+          name= {`cantidad${id}`} 
+          id={`cantidad${id}`}
+          min="0" 
+          onChange={handleQuantityChange}/>  */}
       </td>
-      <td></td>
+      <td>S/. {subtotal}</td>
     </tr>
   )
 }
 
-function ContainerTotal({total}) {
-  console.log("total", total)
+function ContainerTotal({ total }) {
   return (
     <>
-     <h2>Resumen:</h2>
-     <p>Subtotal:</p>
-     <p>US$ ${total}</p>
-     <p>Impuestos:</p>
-     <p>US$ ${(total * 0.18).toFixed(2)}</p>
-     <h3>Total incluyendo impuestos: US$ ${(total * 1.18).toFixed(2)}</h3>
-     <h3>Total sin incluir impuetos US$ ${total.toFixed(2)}</h3>
-     <p>Total: S/. ${(total * 1.18).toFixed(2)}</p>
-     <button className="terciary-btn">Aplicar Código de descuento</button>
-     <a href="../checkout/checkouy.html">
+      <h2>Resumen:</h2>
+      <p>Subtotal:</p>
+      <p>S/. {total.toFixed(2)}</p>
+      <p>Impuestos:</p>
+      <p>S/. {(total * 0.18).toFixed(2)}</p>
+      <h3>Total incluyendo impuestos: S/. {(total * 1.18).toFixed(2)}</h3>
+      <h3>Total sin incluir impuestos: S/. {total.toFixed(2)}</h3>
+      <p>Total: S/. {(total * 1.18).toFixed(2)}</p>
+      <button className="terciary-btn">Aplicar Código de descuento</button>
+      <a href="../checkout/checkout.html">
         <button className="primary-btn">Finalizar pedido</button>
-     </a>
+      </a>
     </>
-  )
+  );
 }
 
 function ShoppingCart() {
-  const storageCart = useCart();
-  const { getTotal } = useCart();
+
+  const storageCart = useCart().storageCart || [];
+
+  const [cart, setCart] = useState(
+    storageCart.map((item) => ({
+      ...item,
+      quantity: item.quantity,
+    }))
+  );
+
+  if (storageCart.length === 0) {
+    return (
+      <div className="empty-cart">
+        <h2>Aun no has agregado productos.</h2>
+      </div>
+    );
+  }
+
+  const updateQuantity = (id, newQuantity) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id===id? { ...item, quantity: newQuantity} : item
+      )
+    );
+  };
+
+  const getTotal = () =>
+    cart.reduce((sum,item) => {
+      const product = products.find((p) => p.id === item.id);
+      return sum + item.quantity * product.price
+    }, 0);
+
     return (
       <main className="main-content-carrito">
         <h1 className="page-title-carrito">Carrito</h1>
@@ -61,8 +122,9 @@ function ShoppingCart() {
                 </tr>
               </thead>
               <tbody>
-                {storageCart && storageCart.storageCart.map((item) => {
-                  const product = products.find(p => p.id === item.id);
+                {cart.map((item) => {
+                  const product = products.find((p) => p.id === item.id);           
+
                   return (
                     <RowShoppingCart
                       key={item.id}
@@ -71,8 +133,9 @@ function ShoppingCart() {
                       description={product.description}
                       price={product.price}
                       quantity={item.quantity}
+                      updateQuantity={updateQuantity}
                     />
-                  )
+                  );
                 })}
               </tbody>
             </table>
@@ -84,4 +147,5 @@ function ShoppingCart() {
       </main>
     )
   }
-  export default ShoppingCart
+  
+  export default ShoppingCart;
