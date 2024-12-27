@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { products } from '../utils/constants';
@@ -24,17 +24,15 @@ export function CartProvider({ children }) {
         }
         localStorage.setItem("cart", JSON.stringify(storageCart));
         setCart(storageCart)
-        console.log('carrito nuevo', JSON.parse(localStorage.getItem("cart")))
         return true;
     }
 
     const removeFromCart = (productId) => {
 
-        console.log('pasa')
         setCart(current =>
             current.filter(item => item.id != productId)
         );
-        console.log('pasa2', cart)
+
     };
 
     const updateQuantity = (productId, quantity) => {

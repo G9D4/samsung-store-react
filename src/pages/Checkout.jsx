@@ -6,9 +6,6 @@ import CartItems from "../components/checkout/CartItems";
 import '../styles/styles.css';
 import { useCheckout } from "../context/CheckoutContext";
 
-
-
-
 function Checkout() {
 
   const { getTotal } = useCart();

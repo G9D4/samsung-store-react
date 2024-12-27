@@ -4,9 +4,6 @@ import RowShoppingCart from '../components/shoppingCart/RowShoppingCart';
 import { products } from '../utils/constants';
 import { useCart } from '../context/CartContext';
 import '../styles/styles.css';
-import { useEffect } from "react";
-
-
 
 function ContainerTotal({ total }) {
 

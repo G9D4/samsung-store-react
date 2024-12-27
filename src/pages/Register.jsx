@@ -91,9 +91,6 @@ function Register() {
         usuarios.push(nuevoUsuario);
         localStorage.setItem("usuarios", JSON.stringify(usuarios));
           
-        console.log(usuarios);
-
-        console.log("Datos registrados:", inputs);
         navigate('/login'); // Redirigir al login
     };
 

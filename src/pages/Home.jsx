@@ -8,7 +8,7 @@ import '../styles/styles.css';
 
 
 function Home() {
-  // FILTERING
+
   const [searchParams] = useSearchParams();
   const filterBy = searchParams.get("filterBy") || "all";
   let filteredProducts;

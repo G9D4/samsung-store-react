@@ -49,40 +49,6 @@ function Footer() {
                 </div>
             </div>
         </footer>
-        // <StyleFooter>
-        // <StyleFooterLinks>
-        //     <StyleFooterLinksColumns>
-        //         <h4>Otras secciones</h4>
-        //         <a href="/nosotros">Conócenos</a>
-        //     </StyleFooterLinksColumns>
-        //     <StyleFooterLinksColumns>
-        //         <h4>¿Necesitas soporte?</h4>
-        //         <a href="/faqs">Soporte técnico</a>
-        //         <a href="/condiciones-compra">Condiciones de Compra</a>
-        //     </StyleFooterLinksColumns>
-        //     <StyleFooterLinksColumns>
-        //         <h4>Redes sociales</h4>
-        //         <StyleFooterLinksRedes>
-        //             <a href="https://www.linkedin.com/company/samsunglatin/" target="_blank">
-        //                 <FontAwesomeIcon icon={faLinkedin} />
-        //             </a>
-        //             <a href="https://www.youtube.com/user/SamsungLatin" target="_blank">
-        //                 <FontAwesomeIcon icon={faYoutubeSquare} />
-        //             </a>
-        //             <a href="https://x.com/SamsungLatin/" target="_blank">
-        //                 <FontAwesomeIcon icon={faTimes} />
-        //             </a>
-        //             <a href="https://www.facebook.com/SamsungLatin" target="_blank">
-        //                 <FontAwesomeIcon icon={faFacebook} />
-        //             </a>
-        //             <a href="https://www.facebook.com/SamsungLatin" target="_blank">
-        //                 <FontAwesomeIcon icon={faInstagram} />
-        //             </a>
-
-        //         </StyleFooterLinksRedes>
-        //     </StyleFooterLinksColumns>
-        // </StyleFooterLinks>
-        // </StyleFooter>
     )
 }
 

@@ -55,8 +55,6 @@ function Login() {
         // Combinar usuarios estáticos y dinámicos
         const todosLosUsuarios = [...usuarios, ...usuariosDinamicos];
     
-        console.log("Usuarios combinados:", todosLosUsuarios);
-    
         const usuarioEncontrado = todosLosUsuarios.find(
             (usuario) =>
                 usuario.email.toLowerCase() === inputs.email.toLowerCase() &&
@@ -68,7 +66,7 @@ function Login() {
         } else {
             // Llamar al método login con los datos del usuario
             login(usuarioEncontrado.email, usuarioEncontrado.contrasenia);
-            console.log("Inicio de sesión exitoso");
+
         }
     };
 
