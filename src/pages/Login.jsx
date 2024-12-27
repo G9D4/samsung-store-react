@@ -45,26 +45,32 @@ function Login() {
         event.preventDefault();
         const emailError = validateEmail(inputs.email);
         const passwordError = validatePassword(inputs.password);
-
-        if (emailError) {
+    
+        if (emailError || passwordError) {
             setErrors({ email: emailError, password: passwordError });
             return;
         }
-
-        const usuarioEncontrado = usuarios.find(
-            (usuario) => usuario.email.toLowerCase() === inputs.email.toLowerCase()
+        const usuariosDinamicos = JSON.parse(localStorage.getItem('usuarios')) || [];
+    
+        // Combinar usuarios estáticos y dinámicos
+        const todosLosUsuarios = [...usuarios, ...usuariosDinamicos];
+    
+        console.log("Usuarios combinados:", todosLosUsuarios);
+    
+        const usuarioEncontrado = todosLosUsuarios.find(
+            (usuario) =>
+                usuario.email.toLowerCase() === inputs.email.toLowerCase() &&
+                usuario.contrasenia === inputs.password
         );
-
+    
         if (!usuarioEncontrado) {
-            setErrors({ email: "El usuario no existe", password: passwordError });
+            setErrors({ email: "El usuario no existe o la contraseña es incorrecta", password: "" });
         } else {
-            if (usuarioEncontrado.contrasenia === inputs.password) {
-                login(inputs.email, inputs.password);
-            } else {
-                setErrors({ email: emailError, password: "La contraseña no coincide con el usuario" });
-            }
+            // Llamar al método login con los datos del usuario
+            login(usuarioEncontrado.email, usuarioEncontrado.contrasenia);
+            console.log("Inicio de sesión exitoso");
         }
-    }
+    };
 
     const handleChange = (event) => {
         const name = event.target.name;
