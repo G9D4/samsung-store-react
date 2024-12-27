@@ -1,13 +1,17 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { products } from '../utils/constants';
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
 
-    let storageCart = JSON.parse(localStorage.getItem("cart")) || []; 
+    const navigate = useNavigate();
+    let storageCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const [cart, setCart] = useState(storageCart);
 
     const addProduct = (user, productId) => {
 
@@ -19,35 +23,51 @@ export function CartProvider({ children }) {
             storageCart.push({ "id": productId, "quantity": 1 })
         }
         localStorage.setItem("cart", JSON.stringify(storageCart));
+        setCart(storageCart)
+        console.log('carrito nuevo', JSON.parse(localStorage.getItem("cart")))
         return true;
     }
 
     const removeFromCart = (productId) => {
 
-        storageCart = storageCart.filter(x => x.id !== productId);
-
-        localStorage.setItem("cart", JSON.stringify(storageCart));
+        console.log('pasa')
+        setCart(current =>
+            current.filter(item => item.id != productId)
+        );
+        console.log('pasa2', cart)
     };
 
     const updateQuantity = (productId, quantity) => {
-        storageCart = storageCart.map(x => {
-            if (x.id === productId) {
-                return {...x, quantity: quantity};
-            }
-        });
 
-        localStorage.setItem("cart", JSON.stringify(storageCart));
+        if (quantity == 0) {
+
+            setCart(current =>
+                current.filter(item => item.id != productId)
+            );
+        } else {
+            setCart(current =>
+                current.map(item =>
+                    item.id === productId ? { ...item, quantity: quantity } : item
+                )
+            );
+        }
     };
+
+    const updateCart = () => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+        toast.success("Carrito actualizado"); 
+    }
 
     const clearCart = () => {
         localStorage.removeItem("cart");
+        navigate('/shoppingCart')
     };
 
     const getTotal = () => {
         let total = 0;
 
         storageCart.forEach((item) => {
-            const product = products.find(p => p.id == item.id);
+            const product = products.find(p => p.id === item.id);
             const subtotal = product.price * item.quantity;
             total += subtotal;
         })
@@ -59,8 +79,11 @@ export function CartProvider({ children }) {
         <CartContext.Provider
             value={{
                 storageCart,
+                cart,
+                setCart,
                 addProduct,
                 removeFromCart,
+                updateCart,
                 updateQuantity,
                 clearCart,
                 getTotal,

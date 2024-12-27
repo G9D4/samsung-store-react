@@ -640,6 +640,38 @@ footer a:hover {
     display: none;
 }
 
+/*Estilo para la paginda de carrito*/
+.img-reducido {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.descripcion-producto {
+    word-wrap: break-word;
+    max-width: 150px;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 4rem 0;
+  }
+  .empty-cart h2 {
+    margin-bottom: 2rem;
+  }
+
+  .cart-quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .cart-quantity-controls span{
+    min-width: 37px;
+    text-align: center;
+    align-items: center;
+  }
+
 /* CHECKOUT */
 
 .checkout {
@@ -998,4 +1030,6 @@ footer a:hover {
     .checkout-detail aside {
         width: auto;
     }
+
+
 }
