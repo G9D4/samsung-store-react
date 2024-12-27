@@ -12,12 +12,12 @@ function Footer() {
             <div className="footer-links">
                 <div className="footer-links_columnas">
                     <h4 className="text-color-dark">Otras secciones</h4>
-                    <a href="/nosotros">Conócenos</a>
+                    <a href="https://www.samsung.com/pe/about-us/company-info/" target="_blank">Conócenos</a>
                 </div>
                 <div className="footer-links_columnas">
                     <h4 className="text-color-dark">¿Necesitas soporte?</h4>
-                    <a href="/faqs">Soporte técnico</a>
-                    <a href="/condiciones-compra">Condiciones de Compra</a>
+                    <a href="https://www.samsung.com/pe/support/" target="_blank">Soporte técnico</a>
+                    <a href="https://www.samsung.com/pe/refunds-and-exchanges/" target="_blank">Condiciones de Compra</a>
                 </div>
                 <div className="footer-links_columnas">
                     <h4 className="text-color-dark">Redes sociales</h4>
@@ -43,9 +43,9 @@ function Footer() {
             <div className="footer-copyright">
                 <p>Copyright © 1995-2020 SAMSUNG. Todos los derechos reservados.</p>
                 <div className="footer-copyright_links">
-                    <a href="/accesibilidad">Ayuda para accesibilidad</a>
-                    <a href="/privacidad">Privacidad</a>
-                    <a href="/legal">Legal</a>
+                    <a href="https://www.samsung.com/latin/sustainability/accessibility/overview/" target="_blank">Ayuda para accesibilidad</a>
+                    <a href="https://www.samsung.com/pe/privacy/" target="_blank">Privacidad</a>
+                    <a href="https://www.samsung.com/pe/info/legal/" target="_blank">Legal</a>
                 </div>
             </div>
         </footer>
