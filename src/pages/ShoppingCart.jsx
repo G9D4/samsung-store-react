@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import RowShoppingCart from '../components/shoppingCart/RowShoppingCart';
+import {RowShoppingCart, RowCardShoppingCart} from '../components/shoppingCart/RowShoppingCart';
 import { products } from '../utils/constants';
 import { useCart } from '../context/CartContext';
 import '../styles/styles.css';
@@ -9,6 +9,7 @@ function ContainerTotal({ total }) {
 
   return (
     <>
+    <div className="summary">
       <h2>Resumen</h2>
       <div className="cart-summary">
         <p>Subtotal</p>
@@ -19,13 +20,14 @@ function ContainerTotal({ total }) {
         <p>S/. {(total * 0.18).toFixed(2)}</p>
       </div>
       <div className="cart-summary">
-        <h4>Total incluyendo impuestos</h4>
-        <h4>S/. {(total * 1.18).toFixed(2)}</h4>    
+        <p><b>Total incluyendo impuestos</b></p>
+        <p><b>S/. {(total * 1.18).toFixed(2)}</b></p>    
       </div>
       <div className="cart-summary">
-        <h4>Total sin incluir impuestos</h4>
-        <h4>S/. {total.toFixed(2)}</h4>
+        <p><b>Total sin incluir impuestos</b></p>
+        <p><b>S/. {total.toFixed(2)}</b></p>
       </div>
+    </div>
 
       <Link to="/checkout">
         <button className="primary-btn">Finalizar pedido</button> 
@@ -51,7 +53,7 @@ function ShoppingCart() {
       <h1 className="page-title-carrito">Carrito</h1>
       <div className="content-wrapper">
         <section className="table-section flex-row">
-          <table className="table-cart">
+          <table className="table-cart table-desktop-tablet">
             <thead>
               <tr>
                 <th>Imagen</th>
@@ -80,9 +82,26 @@ function ShoppingCart() {
               })}
             </tbody>
           </table>
+          <div className="table-cart table-mobile">
+
+              {cart.map((item) => {
+                let productInfo = products.filter(p => p.id == item.id)[0];
+                return (
+                  <RowCardShoppingCart
+                    key={item.id}
+                    id={item.id}
+                    src={productInfo.imageUrls[0]}
+                    title={productInfo.title}
+                    description={productInfo.description}
+                    price={productInfo.price}
+                    quantity={item.quantity}
+                  />
+                );
+              })}
+          </div>
           <div className="carrito-button-container">
-            <button className="terciary-btn btn-fit-content" onClick={() =>clearCart()}>Vaciar carrito</button> 
-            <button className="secondary-btn btn-fit-content" onClick={() => updateCart()}>Actualizar carrito</button>
+            <button className="terciary-btn btn-responsive" onClick={() =>clearCart()}>Vaciar carrito</button> 
+            <button className="secondary-btn btn-responsive" onClick={() => updateCart()}>Actualizar carrito</button>
           </div>
         </section>
         <aside className="cart-detail flex-column">

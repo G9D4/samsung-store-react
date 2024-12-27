@@ -581,12 +581,9 @@ footer a:hover {
 .cart-detail {
     background-color: #F9F9F9;
     padding: 24px;
-    min-width: 400px;
-}
-
-.flex-column {
-    display: flex;
-    flex-direction: column;
+    min-width: 350px;
+    justify-content: space-between;
+    gap: 16px;
 }
 
 .flex-column {
@@ -598,10 +595,6 @@ footer a:hover {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
-}
-
-.carrito-button-container button {
-    width: 280px;
 }
 
 .content-wrapper {
@@ -700,6 +693,13 @@ footer a:hover {
 
 .table-section {
     margin: 0 12px;
+}
+
+.table-desktop-tablet {
+    display: inline-table;
+}
+.table-mobile {
+    display: none;
 }
 
 /* CHECKOUT */
@@ -887,6 +887,14 @@ footer a:hover {
         width: 70%;
     }
 
+    .table-desktop-tablet {
+        display: inline-table;
+    }
+
+    .table-mobile {
+        display: none;
+    }
+
     /* .checkout-form_double-field {
         flex-direction: column;
     } */
@@ -1011,9 +1019,37 @@ footer a:hover {
         display: block;
     }
 
-    /* .table-desktop {
-        display: none;
-    } */
+    .cart-detail {
+        background-color: #F9F9F9;
+        gap: 24px;
+        min-width: auto;
+    }
+    
+    .cart-detail h2 {
+        margin: 0;
+    }
+
+    .summary {
+        gap: 32px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cart-summary {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    
+    .cart-summary p,
+    .cart-summary h4 {
+        margin: 0;
+    }
+
+    .carrito-button-container {
+        flex-direction: column-reverse;
+        gap: 24px;
+    }
 
     .content-wrapper {
         flex-direction: column-reverse;
@@ -1023,10 +1059,6 @@ footer a:hover {
         flex-direction: column;
     }
 
-    .secondary-btn {
-        margin-top: 10px;
-    }
-
     .main-content-carrito {
         flex-direction: column;
     }
@@ -1034,6 +1066,39 @@ footer a:hover {
     .carrito-info {
         flex-direction: column;
         width: 767px;
+    }
+
+    .table-desktop-tablet {
+        display: none;
+    }
+
+    .table-mobile {
+        display: block;
+    }
+
+    .rowCardShoppingCart {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-reducido {
+        width: 50vw;
+        object-fit: cover;
+    }
+
+    .row-card {
+        width: 100%;
+    }
+
+    .row-info {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
     }
 
     /* CHECKOUT MOBILE */
