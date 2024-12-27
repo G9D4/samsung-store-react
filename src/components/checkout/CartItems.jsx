@@ -12,7 +12,7 @@ function CartItem(props) {
                 <span>{props.quantity}</span>
             </div>
             <p>{props.name}</p>
-            <p>S/. {props.price.toFixed(2)}</p>
+            <p>S/. {(props.price*props.quantity).toFixed(2)}</p>
         </article>
     )
 }

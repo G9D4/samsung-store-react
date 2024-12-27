@@ -64,7 +64,7 @@ export function CartProvider({ children }) {
     const getTotal = () => {
         let total = 0;
 
-        storageCart.forEach((item) => {
+        cart.forEach((item) => {
             const product = products.find(p => p.id === item.id);
             const subtotal = product.price * item.quantity;
             total += subtotal;
