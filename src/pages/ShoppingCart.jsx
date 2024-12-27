@@ -50,8 +50,8 @@ function ShoppingCart() {
     <main className="main-content-carrito">
       <h1 className="page-title-carrito">Carrito</h1>
       <div className="content-wrapper">
-        <section className="flex-row">
-          <table className="table-desktop">
+        <section className="table-section flex-row">
+          <table className="table-cart">
             <thead>
               <tr>
                 <th>Imagen</th>
@@ -80,7 +80,7 @@ function ShoppingCart() {
               })}
             </tbody>
           </table>
-          <div>
+          <div className="carrito-button-container">
             <button className="terciary-btn btn-fit-content" onClick={() =>clearCart()}>Vaciar carrito</button> 
             <button className="secondary-btn btn-fit-content" onClick={() => updateCart()}>Actualizar carrito</button>
           </div>

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/fontawesome-free-solid';
+import { faTrash, faPlus, faMinus } from '@fortawesome/fontawesome-free-solid';
 import { useCart } from '../../context/CartContext';
 
 function RowShoppingCart(props) {
@@ -10,25 +10,25 @@ function RowShoppingCart(props) {
 
   return (
     <tr>
-      <td>
+      <td className='td-content'>
         <img src={props.src} alt={props.title} className="img-reducido" />
       </td>
-      <td className='descripcion-producto'>{props.description}</td>
-      <td>S/. {props.price}</td>
-      <td>
+      <td className='td-content descripcion-producto'>{props.description}</td>
+      <td className='td-content'>S/. {props.price}</td>
+      <td className='td-content'>
         <div className="cart-quantity-controls">
-          <button className="btn" onClick={() => updateQuantity(props.id, Math.max(0, props.quantity - 1))}>
-            -
+          <button className="cart-icon-button" onClick={() => updateQuantity(props.id, Math.max(0, props.quantity - 1))}>
+            <FontAwesomeIcon icon={faMinus} />
           </button>
           <span>{props.quantity}</span>
-          <button className="btn" onClick={() => updateQuantity(props.id, props.quantity + 1)}>
-            +
+          <button className="cart-icon-button" onClick={() => updateQuantity(props.id, props.quantity + 1)}>
+            <FontAwesomeIcon icon={faPlus} />
           </button>
         </div>
       </td>
-      <td>S/. {subtotal}</td>
-      <td>
-        <button className="btn remove-button" onClick={() => removeFromCart(props.id)}>
+      <td className='td-content'>S/. {subtotal}</td>
+      <td className='td-content'>
+        <button className="cart-icon-button trash" onClick={() => removeFromCart(props.id)}>
           <FontAwesomeIcon icon={faTrash} />
         </button>
       </td>
