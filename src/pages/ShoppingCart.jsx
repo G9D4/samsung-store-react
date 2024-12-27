@@ -9,14 +9,24 @@ function ContainerTotal({ total }) {
 
   return (
     <>
-      <h2>Resumen:</h2>
-      <p>Subtotal:</p>
-      <p>S/. {total.toFixed(2)}</p>
-      <p>Impuestos:</p>
-      <p>S/. {(total * 0.18).toFixed(2)}</p>
-      <h3>Total incluyendo impuestos: S/. {(total * 1.18).toFixed(2)}</h3>
-      <h3>Total sin incluir impuestos: S/. {total.toFixed(2)}</h3>
-      <p>Total: S/. {(total * 1.18).toFixed(2)}</p>
+      <h2>Resumen</h2>
+      <div className="cart-summary">
+        <p>Subtotal</p>
+        <p>S/. {total.toFixed(2)}</p>
+      </div>
+      <div className="cart-summary">
+        <p>Impuestos</p>
+        <p>S/. {(total * 0.18).toFixed(2)}</p>
+      </div>
+      <div className="cart-summary">
+        <h4>Total incluyendo impuestos</h4>
+        <h4>S/. {(total * 1.18).toFixed(2)}</h4>    
+      </div>
+      <div className="cart-summary">
+        <h4>Total sin incluir impuestos</h4>
+        <h4>S/. {total.toFixed(2)}</h4>
+      </div>
+
       <Link to="/checkout">
         <button className="primary-btn">Finalizar pedido</button> 
       </Link>
