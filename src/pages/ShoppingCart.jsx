@@ -75,7 +75,7 @@ function ShoppingCart() {
           </table>
           <div>
             <button className="terciary-btn btn-fit-content" onClick={clearCart}>Vaciar carrito</button> 
-            <button onClick={() => updateCart()}>sdfsdfsdf</button>
+            <button className="secondary-btn btn-fit-content" onClick={() => updateCart()}>Actualizar carrito</button>
           </div>
         </section>
         <aside className="cart-detail flex-column">

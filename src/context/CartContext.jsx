@@ -35,16 +35,24 @@ export function CartProvider({ children }) {
     };
 
     const updateQuantity = (productId, quantity) => {
+        console.log(quantity)
         
-        setCart(current =>
-            current.map(item =>
-                item.id === productId ? { ...item, quantity: quantity } : item
-            )
-        );
+        if (quantity == 0 ) {
+            console.log('pasa')
 
+            setCart(current =>
+                current.filter(item => item.id != productId)
+            );
+        } else {
+            setCart(current =>
+                current.map(item =>
+                    item.id === productId ? { ...item, quantity: quantity } : item
+                )
+            );
+        }
+        
 
     };
-
 
     const updateCart = () => {
         console.log(cart);
