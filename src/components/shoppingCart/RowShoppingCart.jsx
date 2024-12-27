@@ -5,7 +5,7 @@ import { useCart } from '../../context/CartContext';
 
 function RowShoppingCart(props) {
 
-    const { updateQuantity } = useCart();
+    const { updateQuantity, removeFromCart } = useCart();
     const subtotal = (props.quantity * props.price).toFixed(2);
 
   return (
@@ -28,7 +28,7 @@ function RowShoppingCart(props) {
       </td>
       <td>S/. {subtotal}</td>
       <td>
-        <button className="btn remove-button">
+        <button className="btn remove-button" onClick={() => removeFromCart(props.id)}>
           <FontAwesomeIcon icon={faTrash} />
         </button>
       </td>

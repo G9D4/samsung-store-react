@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { products } from '../utils/constants';
 
 const CartContext = createContext();
@@ -29,16 +30,16 @@ export function CartProvider({ children }) {
 
     const removeFromCart = (productId) => {
 
-        storageCart = storageCart.filter(x => x.id !== productId);
-
-        localStorage.setItem("cart", JSON.stringify(storageCart));
+        console.log('pasa')
+        setCart(current =>
+            current.filter(item => item.id != productId)
+        );
+        console.log('pasa2', cart)
     };
 
     const updateQuantity = (productId, quantity) => {
-        console.log(quantity)
-        
-        if (quantity == 0 ) {
-            console.log('pasa')
+
+        if (quantity == 0) {
 
             setCart(current =>
                 current.filter(item => item.id != productId)
@@ -50,13 +51,11 @@ export function CartProvider({ children }) {
                 )
             );
         }
-        
-
     };
 
     const updateCart = () => {
-        console.log(cart);
         localStorage.setItem("cart", JSON.stringify(cart));
+        toast.success("Carrito actualizado"); 
     }
 
     const clearCart = () => {
