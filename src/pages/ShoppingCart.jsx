@@ -9,6 +9,7 @@ import { useEffect } from "react";
 
 
 function ContainerTotal({ total }) {
+
   return (
     <>
       <h2>Resumen:</h2>
@@ -28,7 +29,7 @@ function ContainerTotal({ total }) {
 
 function ShoppingCart() {
 
-  const { storageCart, cart, setCart, getTotal, clearCart } = useCart();
+  const { storageCart, cart, getTotal, clearCart, updateCart } = useCart();
 
   if (storageCart.length === 0) {
     return (
@@ -37,12 +38,6 @@ function ShoppingCart() {
       </div>
     );
   }
-
-  useEffect(() => {
-    setCart(storageCart)
-    console.log('pasa')
-  }, [])
-
 
   return (
     <main className="main-content-carrito">
@@ -80,6 +75,7 @@ function ShoppingCart() {
           </table>
           <div>
             <button className="terciary-btn btn-fit-content" onClick={clearCart}>Vaciar carrito</button> 
+            <button onClick={() => updateCart()}>sdfsdfsdf</button>
           </div>
         </section>
         <aside className="cart-detail flex-column">

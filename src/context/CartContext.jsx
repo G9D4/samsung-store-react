@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { products } from '../utils/constants';
 
@@ -22,6 +22,7 @@ export function CartProvider({ children }) {
             storageCart.push({ "id": productId, "quantity": 1 })
         }
         localStorage.setItem("cart", JSON.stringify(storageCart));
+        setCart(storageCart)
         console.log('carrito nuevo', JSON.parse(localStorage.getItem("cart")))
         return true;
     }
@@ -33,37 +34,22 @@ export function CartProvider({ children }) {
         localStorage.setItem("cart", JSON.stringify(storageCart));
     };
 
-    // const updateQuantity = (productId, quantity) => {
-    //     console.log('prev storage', storageCart)
-    //     console.log('prev cart', cart)
-    //     console.log(quantity)
-    //     let newCart = cart.map(x => {
-    //         console.log(productId)
-    //         console.log(x.id)
-    //         if (x.id === productId) {
-    //             // x.quantity = quantity;
-    //             console.log(quantity)
-    //             return { ...x, quantity: quantity };
-    //         }
-    //     })
-    //     console.log('pasa', newCart)
-    //     setCart('newCart')
-    //     console.log('post storage', storageCart)
-    //     console.log('post cart', cart)
-
-    //     localStorage.setItem("cart", JSON.stringify(cart));
-    // };
-
     const updateQuantity = (productId, quantity) => {
-        storageCart = storageCart.map(x => {
-            if (x.id === productId) {
-                return {...x, quantity: quantity};
-            }
-        });
-        setCart(storageCart)
+        
+        setCart(current =>
+            current.map(item =>
+                item.id === productId ? { ...item, quantity: quantity } : item
+            )
+        );
 
-        localStorage.setItem("cart", JSON.stringify(storageCart));
+
     };
+
+
+    const updateCart = () => {
+        console.log(cart);
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
 
     const clearCart = () => {
         localStorage.removeItem("cart");
@@ -90,6 +76,7 @@ export function CartProvider({ children }) {
                 setCart,
                 addProduct,
                 removeFromCart,
+                updateCart,
                 updateQuantity,
                 clearCart,
                 getTotal,
